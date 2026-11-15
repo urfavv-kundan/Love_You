@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<title>For Shivani 🤍</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --black: #050505;
+    --white: #ffffff;
+    --soft: #d2d2d2;
+    --muted: #9a9a9a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
+    overflow-x: hidden;
+    color: var(--white);
+    background-color: var(--black);
+    background-image:
+        radial-gradient(ellipse at 12% 12%, rgba(255, 255, 255, 0.08), transparent 40%),
+        radial-gradient(ellipse at 90% 90%, rgba(255, 255, 255, 0.05), transparent 42%);
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+button, a {
+    font: inherit;
+    touch-action: manipulation; /* Removes 300ms tap delay on mobile */
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
+}
+
+/* FLOATING HEARTS */
+
+#hearts {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    bottom: -45px;
+    color: #fff;
+    opacity: 0;
+    will-change: transform, opacity;
+    animation: floatUp linear forwards;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+        opacity: 0;
+    }
+    14% {
+        opacity: 0.45;
+    }
+    100% {
+        transform: translate3d(0, -112vh, 0) rotate(38deg);
+        opacity: 0;
+    }
+}
+
+/* PAGE LAYOUT */
+
+.page {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(16px, 4vw, 36px);
+}
+
+/* MAIN CARD */
+
+.card {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    max-width: 680px;
+    padding: clamp(28px, 6vw, 60px) clamp(18px, 5vw, 50px);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: clamp(20px, 4vw, 28px);
+    /* Fallback background for devices without backdrop-filter */
+    background: rgba(18, 18, 18, 0.88);
+    box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.75),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@supports (backdrop-filter: blur(18px)) or (-webkit-backdrop-filter: blur(18px)) {
+    .card {
+        background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.03)
+        );
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+    }
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: clamp(6px, 1.5vw, 9px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: clamp(14px, 3vw, 20px);
+    pointer-events: none;
+}
+
+@keyframes enter {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.985);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* TYPOGRAPHY */
+
+.eyebrow {
+    color: #c9c9c9;
+    font-size: clamp(9px, 2.2vw, 10.5px);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    line-height: 1.7;
+    text-transform: uppercase;
+}
+
+.symbol {
+    display: inline-block;
+    margin: clamp(16px, 3.5vw, 22px) 0 clamp(8px, 2vw, 12px);
+    font-size: clamp(40px, 9vw, 64px);
+    filter: grayscale(1);
+    animation: gentleFloat 3s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-4deg);
+    }
+    50% {
+        transform: translateY(-7px) rotate(4deg);
+    }
+}
+
+h1 {
+    margin: 4px 0 14px;
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-size: clamp(46px, 11vw, 84px);
+    line-height: 1.15;
+    word-wrap: break-word;
+}
+
+h1 span {
+    color: #d4d4d4;
+}
+
+.copy {
+    max-width: 490px;
+    margin: 0 auto 24px;
+    color: var(--soft);
+    font-size: clamp(13px, 3.2vw, 14.5px);
+    line-height: 1.85;
+}
+
+.divider {
+    margin: clamp(18px, 4vw, 25px) auto;
+    color: #ddd;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+}
+
+.love-note {
+    max-width: 540px;
+    margin: 0 auto 22px;
+    color: #f5f5f5;
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(16.5px, 4.2vw, 23px);
+    line-height: 1.7;
+    padding-inline: 4px;
+}
+
+.promise {
+    max-width: 500px;
+    margin: auto;
+    color: #b0b0b0;
+    font-size: clamp(12.5px, 3vw, 13.5px);
+    line-height: 1.85;
+}
+
+.question {
+    margin: clamp(24px, 5vw, 32px) 0 clamp(18px, 4vw, 24px);
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+    font-size: clamp(23px, 5.5vw, 35px);
+    line-height: 1.35;
+}
+
+.question span {
+    color: #cfcfcf;
+    display: inline-block;
+}
+
+/* BUTTONS */
+
+.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+}
+
+.btn {
+    display: inline-flex;
+    min-height: 50px; /* Optimal mobile thumb target */
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 26px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: clamp(13px, 3.2vw, 14px);
+    font-weight: 600;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn-light {
+    color: #050505;
+    background: #fff;
+    border-color: #fff;
+}
+
+.btn-outline {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Apply hover effects only on devices with a mouse/pointer */
+@media (hover: hover) and (pointer: fine) {
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+    .btn-light:hover {
+        color: #fff;
+        background: transparent;
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+    }
+    .btn-outline:hover {
+        background: rgba(255, 255, 255, 0.16);
+    }
+    .whatsapp-btn:hover {
+        color: #fff;
+        background: #111;
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+    }
+}
+
+.welcome-foot,
+.footer {
+    margin-top: clamp(24px, 5vw, 32px);
+    color: #808080;
+    font-size: 9.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+}
+
+/* PROPOSAL PAGE */
+
+#proposalPage {
+    display: none;
+}
+
+/* YES RESPONSE */
+
+#answer {
+    display: none;
+    margin-top: 24px;
+    padding: clamp(20px, 4vw, 26px) clamp(16px, 4vw, 20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.06);
+    animation: enter 0.55s ease both;
+}
+
+#answer h2 {
+    margin-bottom: 8px;
+    color: #fff;
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-size: clamp(36px, 8.5vw, 54px);
+    line-height: 1.2;
+}
+
+#answer p {
+    margin: 0 auto 18px;
+    max-width: 440px;
+    color: #d0d0d0;
+    font-size: clamp(12.5px, 3vw, 13.5px);
+    line-height: 1.8;
+}
+
+/* WHATSAPP BUTTON */
+
+.whatsapp-btn {
+    color: #050505;
+    background: #fff;
+    border: 1px solid #fff;
+    width: min(100%, 290px);
+}
+
+.phone {
+    margin-top: 12px;
+    color: #a8a8a8;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    user-select: all;
+}
+
+/* CELEBRATION */
+
+.burst {
+    position: fixed;
+    z-index: 10;
+    pointer-events: none;
+    color: white;
+    filter: grayscale(1);
+    will-change: transform, opacity;
+    animation: burst 1.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes burst {
+    from {
+        transform: translate3d(0, 0, 0) scale(0.5);
+        opacity: 1;
+    }
+    to {
+        transform: translate3d(var(--x), var(--y), 0) scale(1.3) rotate(35deg);
+        opacity: 0;
+    }
+}
+
+/* MOBILE STACKING */
+
+@media (max-width: 540px) {
+    .actions {
+        flex-direction: column;
+    }
+
+    .actions .btn,
+    #enterBtn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .divider {
+        letter-spacing: 0.3em;
+    }
+}
+
+/* LANDSCAPE PHONE */
+
+@media (max-height: 540px) and (orientation: landscape) {
+    .page {
+        align-items: flex-start;
+        padding-block: 16px;
+    }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="hearts" aria-hidden="true"></div>
+
+<!-- WELCOME PAGE -->
+<main class="page" id="welcomePage">
+    <section class="card">
+        <div class="eyebrow">
+            A little surprise for someone special
+        </div>
+
+        <div class="symbol" aria-hidden="true">🤍</div>
+
+        <h1>Welcome, <span>Shivani</span></h1>
+
+        <p class="copy">
+            I have something special to tell you.
+            A little message from Kundan's heart,
+            made only for you.
+        </p>
+
+        <button class="btn btn-light" id="enterBtn" type="button">
+            Open My Heart 🤍
+        </button>
+
+        <div class="welcome-foot">
+            Just for you · With love
+        </div>
+    </section>
+</main>
+
+<!-- PROPOSAL PAGE -->
+<section class="page" id="proposalPage" aria-hidden="true">
+    <div class="card">
+        <div class="eyebrow">
+            A message from Kundan's heart
+        </div>
+
+        <div class="symbol" aria-hidden="true">🌹</div>
+
+        <h1>Hey, <span>Shivani</span></h1>
+
+        <div class="divider" aria-hidden="true">
+            ──── ♡ ────
+        </div>
+
+        <p class="love-note">
+            “Koi Kehta Gulaab Ho Tum, Koi Kehta Humraaz Ho Tum, Kisi Ki Kahaani Ho Tum, Kisi Ki Kitaab Ho Tum,<br>
+            Wo Koi Anjaan Tumhe Apna Saa Maan Baitha Hai,<br>
+            Bas Isi Baat Se Anjaan Ho Tum, Mera Gul Ho Tum, Mera Gulaab Ho Tum, Deti Dard Zindagi Usme Ek Aaram Ho Tum”
+        </p>
+
+        <!-- <p class="promise">
+            I don't promise a perfect life, but I promise
+            respect, care, honesty, support and a thousand
+            reasons to smile. I want to create beautiful
+            memories with you.
+        </p> -->
+
+        <div class="question">
+            Shivani, will you be
+            <span>my Love?</span> 🤍
+        </div>
+
+        <div class="actions" id="proposalActions">
+            <button class="btn btn-light" id="yesBtn" type="button">
+                Yes, I would love to! 🤍
+            </button>
+
+            <button class="btn btn-outline" id="thinkBtn" type="button">
+                Let me think 😊
+            </button>
+        </div>
+
+        <!-- YES RESPONSE + WHATSAPP -->
+        <div id="answer" role="status" aria-live="polite">
+            <h2>You made me smile! 🤍</h2>
+
+            <p>
+                Kuch Kehna Tha Tumse, Tum Sunna Chahogi Kya? <br>
+                Zindgi Ek Chhota sa Safar Hai, Tum Mere Sath Chalna Chahogi Kya? <br>
+                Aur Jab KAbhi Mujhe Nind Na Aaye, Tum Mujhe Apni God Me Sulaaoge Kya?<br>
+                Vaise To Mene Gwaaya He Har Apni Pyaari Chij Ko, Tum Vo PYaari Chij Banna Chahogi Kya? <br>
+                Send me a message — I'd love to hear from you. 🥹
+            </p>
+
+            <a class="btn whatsapp-btn"
+               id="whatsappBtn"
+               href="https://wa.me/917489087504"
+               target="_blank"
+               rel="noopener noreferrer">
+                Message me on WhatsApp ↗
+            </a>
+
+            <div class="phone">
+                WhatsApp: +91 74890 87504
+            </div>
+        </div>
+
+        <div class="footer">
+            Made By Kundan ♥ just for Shivani
+        </div>
+    </div>
+</section>
+
+<script>
+// FLOATING HEARTS (Optimized for mobile battery & performance)
+const heartsLayer = document.getElementById("hearts");
+const isMobile = window.innerWidth <= 600;
+const initialHearts = isMobile ? 8 : 12;
+const heartInterval = isMobile ? 1200 : 950;
+
+function createHeart() {
+    const heart = document.createElement("span");
+    heart.className = "heart";
+    const symbols = ["♡", "♥", "✦", "🤍"];
+    heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+    heart.style.left = (Math.random() * 94 + 3) + "%";
+    heart.style.fontSize = (12 + Math.random() * 16) + "px";
+    heart.style.animationDuration = (8 + Math.random() * 7) + "s";
+
+    heartsLayer.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 16000);
+}
+
+for (let i = 0; i < initialHearts; i++) {
+    setTimeout(createHeart, i * 350);
+}
+
+setInterval(createHeart, heartInterval);
+
+// WELCOME PAGE TO PROPOSAL PAGE
+document.getElementById("enterBtn").addEventListener("click", () => {
+    const welcome = document.getElementById("welcomePage");
+    const proposal = document.getElementById("proposalPage");
+
+    welcome.style.transition = "opacity 0.45s ease";
+    welcome.style.opacity = "0";
+
+    setTimeout(() => {
+        welcome.style.display = "none";
+        welcome.setAttribute("aria-hidden", "true");
+
+        proposal.style.display = "flex";
+        proposal.setAttribute("aria-hidden", "false");
+        proposal.style.opacity = "0";
+
+        requestAnimationFrame(() => {
+            proposal.style.transition = "opacity 0.5s ease";
+            proposal.style.opacity = "1";
+        });
+
+        window.scrollTo({
+            top: 0,
+            behavior: "instant"
+        });
+    }, 450);
+});
+
+// WHATSAPP LINK WITH MESSAGE
+const whatsappMessage = "Hi! I clicked YES on your proposal website. 🤍";
+document.getElementById("whatsappBtn").href =
+    "https://wa.me/917489087504?text=" + encodeURIComponent(whatsappMessage);
+
+// YES BUTTON
+document.getElementById("yesBtn").addEventListener("click", () => {
+    const answerBox = document.getElementById("answer");
+    answerBox.style.display = "block";
+
+    document.querySelector(".question").textContent = "A beautiful new beginning? 🤍";
+
+    const yesBtn = document.getElementById("yesBtn");
+    yesBtn.textContent = "You made me so happy! 🥰";
+    yesBtn.disabled = true;
+
+    document.getElementById("thinkBtn").style.display = "none";
+
+    // HEART CELEBRATION
+    const symbols = ["🤍", "♡", "♥", "✦", "✨"];
+    const burstCount = isMobile ? 26 : 36;
+
+    for (let i = 0; i < burstCount; i++) {
+        const item = document.createElement("span");
+        item.className = "burst";
+        item.textContent = symbols[i % symbols.length];
+
+        item.style.left = "50%";
+        item.style.top = "50%";
+        item.style.fontSize = (16 + Math.random() * 16) + "px";
+
+        const spreadX = (Math.random() - 0.5) * window.innerWidth * 0.85;
+        const spreadY = (Math.random() - 0.5) * window.innerHeight * 0.75;
+
+        item.style.setProperty("--x", spreadX + "px");
+        item.style.setProperty("--y", spreadY + "px");
+
+        document.body.appendChild(item);
+
+        setTimeout(() => {
+            item.remove();
+        }, 1800);
+    }
+
+    setTimeout(() => {
+        answerBox.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+    }, 100);
+});
+
+// LET ME THINK BUTTON
+document.getElementById("thinkBtn").addEventListener("click", () => {
+    document.querySelector(".question").textContent = "Take your time, Shivani. 🤍";
+    document.querySelector(".promise").textContent =
+        "No pressure at all. Your happiness and your answer matter to me. I just wanted you to know how special you are. 🤍";
+    document.getElementById("thinkBtn").textContent = "I understand 🤍";
+});
+</script>
+
+</body>
+</html>
